@@ -21,7 +21,7 @@ int ourexit(char **argv)
 		if (argv[1][i] < 48 || argv[1][i] > 57)
 			return (3);
 	}
-	status = _atoi(argv[1]);
+	status = atoi(argv[1]);
 	free(argv[0]);
 	free(argv);
 	exit(status);

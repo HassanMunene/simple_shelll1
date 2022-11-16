@@ -125,3 +125,25 @@ int _unsetenv(char **argv)
 	}
 	return (1);
 }
+/**
+ * _non_int - executes the shell in non-interactive mode
+ * @arr: array of structures to handle built in commands
+ */
+void _non_int(built_in_t arr[])
+{
+	char **argv;
+	char *buff = 0;
+	int status = EXIT_SUCCESS;
+	size_t buffsize = 1024;
+	int err_count = 0;
+
+	while (getline(&buff, &buffsize, stdin) != EOF)
+	{
+		err_count++;
+		argv = token_buff(buff, " \t\r\n\a");
+		status = shell_execute(argv, arr);
+		free(argv);
+	}
+	free(buff);
+	exit(status);
+}

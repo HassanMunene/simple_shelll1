@@ -6,7 +6,8 @@
 int main(void)
 {
 	char *buff = NULL, **argv = NULL;
-	int flag = 1, err_count = 0;
+	int flag = 1;
+
 	int status = EXIT_SUCCESS;
 
 	built_in_t built_in_arr[] = {
@@ -30,7 +31,6 @@ int main(void)
 	{
 		_puts("$ ");
 
-		err_count++;
 
 		buff = read_input();
 
@@ -38,7 +38,6 @@ int main(void)
 
 		status = shell_execute(argv, built_in_arr);
 
-		_error_handler(&status, err_count, argv);
 		free(argv);
 		free(buff);
 	}
